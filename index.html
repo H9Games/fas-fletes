@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080e19">
+  <title>FAS Fletes | Cotizador</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+<main class="app">
+  <header class="header">
+    <div class="logo">FAS<span>FLETES</span></div>
+    <p>Sistema privado de cotizaciones</p>
+  </header>
+
+  <section class="card">
+    <h2>🚚 Nuevo traslado</h2>
+
+    <label for="unidad">Unidad de transporte</label>
+    <select id="unidad"></select>
+    <div class="info-unidad" id="infoUnidad"></div>
+
+    <label for="mercancia">Mercancía</label>
+    <input id="mercancia" placeholder="Ej. muebles, materiales">
+
+    <label for="peso">Peso de la mercancía (kg)</label>
+    <input id="peso" type="number" min="0" step="0.1"
+      placeholder="Ej. 350" inputmode="decimal">
+    <div class="info-unidad" id="infoPeso"></div>
+
+    <label for="kilometros">Kilómetros de ida</label>
+    <input id="kilometros" type="number" min="0" step="0.1"
+      placeholder="Ej. 35" inputmode="decimal">
+
+    <label class="check">
+      <input id="regreso" type="checkbox" checked>
+      Incluir regreso de la camioneta
+    </label>
+
+    <label for="descarga">Carga y descarga ($)</label>
+    <input id="descarga" type="number" min="0" value="0">
+
+    <label for="casetas">Casetas y otros gastos ($)</label>
+    <input id="casetas" type="number" min="0" value="0">
+
+    <button class="btn-primary" id="cotizar">
+      Calcular cotización
+    </button>
+  </section>
+
+  <section class="card resultado oculto" id="resultado">
+    <p>PRECIO SUGERIDO DEL TRASLADO</p>
+    <h1 id="precioFinal">$0.00</h1>
+    <div class="detalle" id="detalleCostos"></div>
+    <button class="btn-primary" id="generarImagen">
+      📸 Compartir cotización
+    </button>
+  </section>
+
+  <section class="card">
+    <h2>🚛 Administrar unidades</h2>
+    <p class="descripcion">
+      Agrega camionetas o modifica sus gastos.
+    </p>
+    <div id="listaUnidades"></div>
+
+    <h2 id="tituloFormulario">Agregar unidad</h2>
+
+    <label for="nombreUnidad">Nombre de la unidad</label>
+    <input id="nombreUnidad" placeholder="Ej. Nissan NP300 2027">
+
+    <label for="combustibleUnidad">Combustible</label>
+    <select id="combustibleUnidad">
+      <option>Gasolina</option>
+      <option>Diésel</option>
+    </select>
+
+    <label for="rendimientoUnidad">Rendimiento (km/L)</label>
+    <input id="rendimientoUnidad" type="number"
+      min="0.1" step="0.1" inputmode="decimal">
+
+    <label for="capacidadUnidad">Capacidad máxima (kg)</label>
+    <input id="capacidadUnidad" type="number"
+      min="1" step="1" inputmode="numeric">
+
+    <label for="precioUnidad">Precio combustible ($/L)</label>
+    <input id="precioUnidad" type="number"
+      min="0" step="0.01" value="24">
+
+    <label for="desgasteUnidad">
+      Llantas y mantenimiento ($/km)
+    </label>
+    <input id="desgasteUnidad" type="number"
+      min="0" step="0.01" value="2">
+
+    <label for="pesoUnidad">Cargo por cada 100 kg ($)</label>
+    <input id="pesoUnidad" type="number"
+      min="0" step="0.01" value="0">
+
+    <label for="fijoUnidad">
+      Otros gastos por viaje ($)
+    </label>
+    <input id="fijoUnidad" type="number"
+      min="0" step="0.01" value="0">
+
+    <label for="seguroAnualUnidad">
+      Seguro anual de la unidad ($)
+    </label>
+    <input id="seguroAnualUnidad" type="number"
+      min="0" step="0.01" value="0">
+
+    <label for="viajesAnualesUnidad">
+      Viajes estimados al año
+    </label>
+    <input id="viajesAnualesUnidad" type="number"
+      min="1" step="1" value="100">
+
+    <button class="btn-primary" id="guardarUnidad">
+      Guardar unidad
+    </button>
+    <button class="btn-secondary" id="cancelarUnidad">
+      Cancelar edición
+    </button>
+  </section>
+
+  <section class="card">
+    <h2>⚙️ Configuración general</h2>
+
+    <label for="costoChofer">Pago del chofer por viaje ($)</label>
+    <input id="costoChofer" type="number"
+      min="0" step="0.01" value="0">
+
+    <label for="margen">Margen de ganancia</label>
+    <select id="margen">
+      <option value="40">40%</option>
+      <option value="45" selected>45%</option>
+      <option value="50">50%</option>
+    </select>
+
+    <button class="btn-secondary" id="guardarConfig">
+      Guardar configuración
+    </button>
+  </section>
+
+  <footer>FAS Fletes · Cotizador interno</footer>
+</main>
+
+<canvas id="canvasCotizacion" hidden></canvas>
+</body>
+</html>
